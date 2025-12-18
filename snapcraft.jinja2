@@ -1,0 +1,27 @@
+name: secret-tool
+version: '{{ version }}'
+summary: command line tool that can be used to store and retrieve passwords.
+description: |
+  Each password is stored in an item. Items are uniquely identified by a set
+  of attribute keys and values. When storing a password you must specify
+  unique pairs of attributes names and values, and when looking up a password
+  you provide the same attribute name and value pairs.
+  
+  See https://manpages.ubuntu.com/manpages/{{ release }}/en/man1/secret-tool.1.html
+  for more information.
+grade: stable
+confinement: strict
+
+base: {{ base }}
+
+apps:
+  secret-tool:
+    command: usr/bin/secret-tool
+    plugs:
+    - desktop
+
+parts:
+  secret-tool:
+    plugin: nil
+    stage-packages:
+    - libsecret-tools={{ version }}
